@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 export default function App() {
   const [people, setPeople] = useState([
@@ -14,14 +14,23 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <FlatList
-          numColumns={2}
-          keyExtractor={(item) => item.key}
-          data={people}
-          renderItem={({item}) => (
-            <Text style={styles.item}>{item.name}</Text>
-          )}
-        />
+      <ScrollView>
+        {
+          // people.map((item) => {
+          //   return (
+          //     <View key={item.key}>
+          //       <Text style={styles.item}>{item.name}</Text>
+          //     </View>
+          //   )
+          // })
+
+          people.map(item => (
+            <View key={item.key}>
+              <Text style={styles.item}>{item.name}</Text>
+            </View>
+          ))
+        }
+      </ScrollView>
     </View>
   );
 }
@@ -39,7 +48,6 @@ const styles = StyleSheet.create({
     marginTop: 24,
     padding: 30,
     backgroundColor: 'pink',
-    fontSize: 24,
-    marginHorizontal: 10,
+    fontSize: 24
   }
 });
